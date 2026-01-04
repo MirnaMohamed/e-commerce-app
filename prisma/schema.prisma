@@ -1,6 +1,6 @@
 generator client {
   provider = "prisma-client"
-  output   = "../app/generated/prisma"
+  output   = "../lib/generated/prisma"
 }
 
 datasource db {
@@ -8,15 +8,15 @@ datasource db {
 }
 
 model Product {
-  id          String  @id @default(cuid())
+  id    Int     @id @default(autoincrement())
   name        String
   description String?
   category  Category @relation(fields: [categoryId], references: [id])
-  categoryId String
+  categoryId Int
 }
 
 model Category {
-  id String @id @default(cuid())
+  id    Int     @id @default(autoincrement())
   name String 
   slug String @unique
   products Product[]
