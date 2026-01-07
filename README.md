@@ -23,6 +23,8 @@ To create a migration:
 npx prisma migrate dev --name migration_name
 # To make sure you're in sync with the db 
 npx prisma db pull
+# If you don't want to make migrations until you're sure, you can update the database using this command and once you're comfortable use the migrate command.
+npx prisma db push
 ```
 
 This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
