@@ -2,7 +2,7 @@ import "dotenv/config";
 import { PrismaClient } from "@/lib/generated/prisma/client"; 
 import { PrismaPg } from "@prisma/adapter-pg";
 
-const globalForPrisma = globalThis as unknown as {
+const globalForPrisma = global as unknown as {
     prisma: PrismaClient
 };
 const adapter = new PrismaPg({
@@ -11,6 +11,7 @@ const adapter = new PrismaPg({
 
 const db = globalForPrisma.prisma ?? new PrismaClient({
     adapter,
+    log: ["query", "info", "warn", "error"],
 });
 
 if (process.env.NODE_ENV !== "production") globalForPrisma.prisma = db;

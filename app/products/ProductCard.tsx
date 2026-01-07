@@ -6,7 +6,7 @@ export function ProductCard( {product}: {product: Product} ) {
     return (
         <div className="border rounded-lg p-4">
             <div className="relative aspect-video">
-            <Image src={product.image}
+            <Image src={product.image!}
              alt={product.name} fill
              sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
              className="object-cover" />
