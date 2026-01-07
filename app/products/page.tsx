@@ -1,3 +1,4 @@
+import { Card } from "@/components/ui/card";
 import db from "@/lib/prisma";
 
 export default async function Products() {
@@ -9,7 +10,11 @@ export default async function Products() {
       <div>Products</div>
       <ul>
         {products.map((product) => (
-          <li key={product.id}>{product.name}</li>
+          <Card key={product.id}>
+            <li>{product.name}</li>
+            <li>{product.description}</li>
+            <li className="w-full text-right">{product.price}</li>
+          </Card>
         ))}
       </ul>
     </>
