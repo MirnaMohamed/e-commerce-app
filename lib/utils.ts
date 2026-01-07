@@ -5,10 +5,10 @@ export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs))
 }
 
-export function formatPrice(priceInCents: number): string {
-  const dollars = priceInCents / 100;
-  return dollars.toLocaleString("en-US", {
-    style: "currency",
-    currency: "USD",
-  });
+
+export function formatPrice(price: number): string {
+  return new Intl.NumberFormat("en-US", { 
+    style: "currency", 
+    currency: "USD" }).format(price);
+    
 }
