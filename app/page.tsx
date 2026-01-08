@@ -1,10 +1,19 @@
 import db from "@/lib/prisma";
 import { ProductCard } from "./products/ProductCard";
 
-export default async function Home() {
-  const products = await db.product.findMany();
+type SearchParams = Promise<{ [key: string]: string | string[] | undefined }>;
+
+export default async function Home(props : { searchParams: SearchParams }) {
+  const searchParams = await props.searchParams;
+  const page = Number(searchParams.page) || 1;
+  const pageSize = 3;
+  const skip = (page - 1) * pageSize;
+  const products = await db.product.findMany({
+    skip,
+    take: pageSize,
+    orderBy: { id: "asc" },
+  });
   console.log(products);
-  await new Promise((resolve) => setTimeout(resolve, 3000)); // Simulate delay
   return (
     <main className="container mx-auto p-4">
       <h1 className="text-3xl font-bold mb-6">Home</h1>
